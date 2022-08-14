@@ -200,7 +200,7 @@ def send_text(message):
             bot_name, message.chat.id)
         msg = ref_msg.format(ref_count, Per_Refer, TOKEN, ref_link)
         bot.send_message(message.chat.id, msg, parse_mode="Markdown")
-    if message.text == "⚙️ Set Wallet":
+    if message.text == "⚙️ Définir le portefeuille":
         user_id = message.chat.id
         user = str(user_id)
 
@@ -219,7 +219,7 @@ def send_text(message):
         if (user_id not in bonus.keys()) or (cur_time - bonus[user_id] > 60*60*24):
             data['balance'][(user)] += Daily_bonus
             bot.send_message(
-                user_id, f"Congrats you just received {Daily_bonus} {TOKEN}")
+                user_id, f"Félicitations vous venez de recevoir {Daily_bonus} {TOKEN}")
             bonus[user_id] = cur_time
             json.dump(data, open('users.json', 'w'))
         else:
@@ -250,7 +250,7 @@ def send_text(message):
         bal = data['balance'][user]
         wall = data['wallet'][user]
         if wall == "none":
-            bot.send_message(user_id, "_❌ wallet Not set_",
+            bot.send_message(user_id, "_❌ portefeuille Non défini_",
                              parse_mode="Markdown")
             return
         if bal >= Mini_Withdraw:
