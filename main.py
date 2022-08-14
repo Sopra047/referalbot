@@ -202,7 +202,7 @@ def send_text(message):
         bot.send_message(message.chat.id, msg, parse_mode="Markdown")
     if message.text == "⚙️ Définir le portefeuille":
         user_id = message.chat.id
-        user = str(user_id)
+        user = int(user_id)
 
         keyboard = telebot.types.ReplyKeyboardMarkup(True)
         keyboard.row('🚫 Annuler')
@@ -272,7 +272,7 @@ def trx_address(message):
         return menu(message.chat.id)
     if len(message.text) == 13:
         user_id = message.chat.id
-        user = str(user_id)
+        user = int(user_id)
         data = json.load(open('users.json', 'r'))
         data['wallet'][user] = message.text
 
