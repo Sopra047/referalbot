@@ -63,8 +63,8 @@ def start(message):
         print(data)
         markup = telebot.types.InlineKeyboardMarkup()
         markup.add(telebot.types.InlineKeyboardButton(
-           text='🤼‍♂️ Rejoint', callback_data='check'))
-        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne - "
+           text='✅ Verifier', callback_data='check'))
+        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - "
         for i in CHANNELS:
             msg_start += f"\n➡️ {i}\n"
         msg_start += "*"
@@ -97,8 +97,8 @@ def start(message):
         print(data)
         markups = telebot.types.InlineKeyboardMarkup()
         markups.add(telebot.types.InlineKeyboardButton(
-            text='🤼‍♂️ Rejoint', callback_data='check'))
-        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne - \n➡️ @filmserieshoww*"
+            text='✅ Verifier', callback_data='check'))
+        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @filmserieshoww*"
         bot.send_message(user, msg_start,
                          parse_mode="Markdown", reply_markup=markups)
    except:
@@ -116,7 +116,7 @@ def query_handler(call):
             user_id = call.message.chat.id
             user = str(user_id)
             bot.answer_callback_query(
-                callback_query_id=call.id, text='✅ Vous avez rejoint Maintenant, vous pouvez gagner de largent')
+                callback_query_id=call.id, text='✅ Vous avez rejoint Maintenant, vous pouvez gagner de largent et partage le lien de parrainage pour gagner encore plus')
             bot.delete_message(call.message.chat.id, call.message.message_id)
             if user not in data['refer']:
                 data['refer'][user] = True
@@ -154,7 +154,7 @@ def query_handler(call):
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
                 text='🤼‍♂️ rejoint', callback_data='check'))
-            msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne - \n➡️ @filmserieshoww*"
+            msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @filmserieshoww*"
             bot.send_message(call.message.chat.id, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
    except:
@@ -270,7 +270,7 @@ def trx_address(message):
    try:
     if message.text == "🚫 Annuler":
         return menu(message.chat.id)
-    if len(message.text) == 13:
+    if len(message.text) == 12:
         user_id = message.chat.id
         user = str(user_id)
         data = json.load(open('users.json', 'r'))
