@@ -183,9 +183,9 @@ def send_text(message):
         msg = accmsg.format(message.from_user.first_name,
                             wallet, balance, TOKEN)
         bot.send_message(message.chat.id, msg, parse_mode="Markdown")
-    if message.text == '🙌🏻 Referrals':
+    if message.text == '🙌🏻 Parrainages':
         data = json.load(open('users.json', 'r'))
-        ref_msg = "*⏯️ Total Invites : {} Users\n\n👥Système de parrainage\n\n1 Level:\n🥇 Level°1 - {} {}\n\n🔗 Lien de référence ⬇️\n{}*"
+        ref_msg = "*⏯️ Total Invites : {} Utilisateurs\n\n👥Système de parrainage\n\n1 Level:\n🥇 Level°1 - {} {}\n\n🔗 Lien de référence ⬇️\n{}*"
 
         bot_name = bot.get_me().username
         user_id = message.chat.id
