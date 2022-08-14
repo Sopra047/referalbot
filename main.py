@@ -202,7 +202,7 @@ def send_text(message):
         bot.send_message(message.chat.id, msg, parse_mode="Markdown")
     if message.text == "⚙️ Définir le portefeuille":
         user_id = message.chat.id
-        user = int(user_id)
+        user = str(user_id)
 
         keyboard = telebot.types.ReplyKeyboardMarkup(True)
         keyboard.row('🚫 Annuler')
