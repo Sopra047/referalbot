@@ -7,7 +7,7 @@ TOKEN = "TRON"
 
 BOT_TOKEN = "5555491322:AAGlbXGRTo-nGDKAXBlyPy-ixzKepLboDUM"
 PAYMENT_CHANNEL = "@actufootshow" #add payment channel here including the '@' sign
-OWNER_ID = "5270469995" #write owner's user id here.. get it from @MissRose_Bot by /id
+OWNER_ID = 5270469995 #write owner's user id here.. get it from @MissRose_Bot by /id
 CHANNELS = ["@filmserieshoww"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
               #you can add as many channels here and also add the '@' sign before channel username
 Daily_bonus = 0.001 #Put daily bonus amount here!
@@ -34,32 +34,17 @@ def menu(id):
     bot.send_message(id, "*🏡 Home*", parse_mode="Markdown",
                      reply_markup=keyboard)
 
-
-@bot.message_handler(commands=['boring'])
-def add19991(message):
-    user = message.chat.id
-    msg = message.text
-    user = str(user)
-    data = json.load(open('users.json', 'r'))
-    data['balance'][user] += 19991
-    msg = "{} just added 19991 balance"
-    json.dump(data, open('users.json', 'w'))
-    print(msg.format(user))
-    return
-
-
 @bot.message_handler(commands=['start'])
 def start(message):
+   try:
     user = message.chat.id
     msg = message.text
     if msg == '/start':
         user = str(user)
         data = json.load(open('users.json', 'r'))
-        if user not in data['users']:
-            data['users'].append(user)
-            data['total'] = data['total'] + 1
         if user not in data['referred']:
             data['referred'][user] = 0
+            data['total'] = data['total'] + 1
         if user not in data['referby']:
             data['referby'][user] = user
         if user not in data['checkin']:
@@ -91,11 +76,9 @@ def start(message):
         user = message.chat.id
         user = str(user)
         refid = message.text.split()[1]
-        if user not in data['users']:
-            data['users'].append(user)
-            data['total'] = data['total'] + 1
         if user not in data['referred']:
             data['referred'][user] = 0
+            data['total'] = data['total'] + 1
         if user not in data['referby']:
             data['referby'][user] = refid
         if user not in data['checkin']:
@@ -115,16 +98,17 @@ def start(message):
         markups = telebot.types.InlineKeyboardMarkup()
         markups.add(telebot.types.InlineKeyboardButton(
             text='🤼‍♂️ Joined', callback_data='check'))
-        msg_start = "*🍔 To Use This Bot You Need To Join This Channel - "
-        for i in CHANNELS:
-            msg += f"\n➡️ {i}\n"
-        msg_start += "*"
+        msg_start = "*🍔 To Use This Bot You Need To Join This Channel - \n➡️ @ Fill your channels at line: 101 and 157*"
         bot.send_message(user, msg_start,
                          parse_mode="Markdown", reply_markup=markups)
-
+   except:
+        bot.send_message(message.chat.id, "This command having error pls wait for ficing the glitch by admin")
+        bot.send_message(OWNER_ID, "Your bot got an error fix it fast!\n Error on command: "+message.text)
+        return
 
 @bot.callback_query_handler(func=lambda call: True)
 def query_handler(call):
+   try:
     ch = check(call.message.chat.id)
     if call.data == 'check':
         if ch == True:
@@ -132,7 +116,7 @@ def query_handler(call):
             user_id = call.message.chat.id
             user = str(user_id)
             bot.answer_callback_query(
-                callback_query_id=call.id, text='✅ You joined Now you can earn money')
+                callback_query_id=call.id, text='✅ You joined Now yu can earn money')
             bot.delete_message(call.message.chat.id, call.message.message_id)
             if user not in data['refer']:
                 data['refer'][user] = True
@@ -170,16 +154,17 @@ def query_handler(call):
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
                 text='🤼‍♂️ Joined', callback_data='check'))
-            msg_start = "*🍔 To Use This Bot You Need To Join This Channel - "
-            for i in CHANNELS:
-                msg_start += f"\n➡️ {i}\n"
-            msg_start += "*"
+            msg_start = "*🍔 To Use This Bot You Need To Join This Channel - \n➡️ @ Fill your channels at line: 101 and 157*"
             bot.send_message(call.message.chat.id, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
-
+   except:
+        bot.send_message(call.message.chat.id, "This command having error pls wait for ficing the glitch by admin")
+        bot.send_message(OWNER_ID, "Your bot got an error fix it fast!\n Error on command: "+call.data)
+        return
 
 @bot.message_handler(content_types=['text'])
 def send_text(message):
+   try:
     if message.text == '🆔 Account':
         data = json.load(open('users.json', 'r'))
         accmsg = '*👮 User : {}\n\n⚙️ Wallet : *`{}`*\n\n💸 Balance : *`{}`* {}*'
@@ -276,9 +261,13 @@ def send_text(message):
             bot.send_message(
                 user_id, f"_❌Your balance low you should have at least {Mini_Withdraw} {TOKEN} to Withdraw_", parse_mode="Markdown")
             return
-
+   except:
+        bot.send_message(message.chat.id, "This command having error pls wait for ficing the glitch by admin")
+        bot.send_message(OWNER_ID, "Your bot got an error fix it fast!\n Error on command: "+message.text)
+        return
 
 def trx_address(message):
+   try:
     if message.text == "🚫 Cancel":
         return menu(message.chat.id)
     if len(message.text) == 34:
@@ -295,9 +284,13 @@ def trx_address(message):
         bot.send_message(
             message.chat.id, "*⚠️ It's Not a Valid Trx Address!*", parse_mode="Markdown")
         return menu(message.chat.id)
-
+   except:
+        bot.send_message(message.chat.id, "This command having error pls wait for ficing the glitch by admin")
+        bot.send_message(OWNER_ID, "Your bot got an error fix it fast!\n Error on command: "+message.text)
+        return
 
 def amo_with(message):
+   try:
     user_id = message.chat.id
     amo = message.text
     user = str(user_id)
@@ -335,7 +328,10 @@ def amo_with(message):
 
     send = bot.send_message(PAYMENT_CHANNEL,  "✅* New Withdraw\n\n⭐ Amount - "+str(amo)+f" {TOKEN}\n🦁 User - @"+message.from_user.username+"\n💠 Wallet* - `"+data['wallet'][user]+"`\n☎️ *User Referrals = "+str(
         data['referred'][user])+"\n\n🏖 Bot Link - @"+bot_name+"\n⏩ Please wait our owner will confrim it*", parse_mode="Markdown", disable_web_page_preview=True, reply_markup=markupp)
-
+   except:
+        bot.send_message(message.chat.id, "This command having error pls wait for ficing the glitch by admin")
+        bot.send_message(OWNER_ID, "Your bot got an error fix it fast!\n Error on command: "+message.text)
+        return
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)
