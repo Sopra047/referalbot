@@ -29,7 +29,7 @@ bonus = {}
 def menu(id):
     keyboard = telebot.types.ReplyKeyboardMarkup(True)
     keyboard.row('🆔 Compte')
-    keyboard.row('🙌🏻 Parrainages', '🎁 Bonus', '💸 Se désister')
+    keyboard.row('🙌🏻 Parrainages', '🎁 Bonus', '💸 Solde')
     keyboard.row('⚙️ Définir le portefeuille', '📊Statistiques')
     bot.send_message(id, "*🏡 Home*", parse_mode="Markdown",
                      reply_markup=keyboard)
@@ -236,7 +236,7 @@ def send_text(message):
         bot.send_message(user_id, msg, parse_mode="Markdown")
         return
 
-    if message.text == "💸 Se désister":
+    if message.text == "💸 Solde":
         user_id = message.chat.id
         user = str(user_id)
 
@@ -259,7 +259,7 @@ def send_text(message):
             bot.register_next_step_handler(message, amo_with)
         else:
             bot.send_message(
-                user_id, f"_❌Votre solde bas, vous devriez avoir au moins {Mini_Withdraw} {TOKEN} to Withdraw_", parse_mode="Markdown")
+                user_id, f"_❌Votre solde bas, vous devriez avoir au moins {Mini_Withdraw} {TOKEN} to Solde_", parse_mode="Markdown")
             return
    except:
         bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
