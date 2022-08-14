@@ -154,7 +154,7 @@ def query_handler(call):
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
                 text='🤼‍♂️ rejoint', callback_data='check'))
-            msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne - \n➡️ @ Fill your channels at line: 101 and 157*"
+            msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne - \n➡️ @filmserieshoww*"
             bot.send_message(call.message.chat.id, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
    except:
