@@ -272,7 +272,7 @@ def trx_address(message):
         return menu(message.chat.id)
     if len(message.text) == 13:
         user_id = message.chat.id
-        user = int(user_id)
+        user = str(user_id)
         data = json.load(open('users.json', 'r'))
         data['wallet'][user] = message.text
 
