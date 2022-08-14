@@ -206,7 +206,7 @@ def send_text(message):
 
         keyboard = telebot.types.ReplyKeyboardMarkup(True)
         keyboard.row('🚫 Annuler')
-        send = bot.send_message(message.chat.id, "_⚠️Envoyez votre adresse de portefeuille MTN ._",
+        send = bot.send_message(message.chat.id, "_⚠️Envoyez votre adresse de portefeuille MTN a 12 caractères Exemple:237670086719._",
                                 parse_mode="Markdown", reply_markup=keyboard)
         # Next message will call the name_handler function
         bot.register_next_step_handler(message, trx_address)
