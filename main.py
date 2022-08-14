@@ -149,7 +149,7 @@ def query_handler(call):
 
         else:
             bot.answer_callback_query(
-                callback_query_id=call.id, text='❌ You not Joined')
+                callback_query_id=call.id, text='❌ Vous navez pas rejoint')
             bot.delete_message(call.message.chat.id, call.message.message_id)
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
@@ -270,7 +270,7 @@ def trx_address(message):
    try:
     if message.text == "🚫 Annuler":
         return menu(message.chat.id)
-    if len(message.text) == 34:
+    if len(message.text) == 13:
         user_id = message.chat.id
         user = str(user_id)
         data = json.load(open('users.json', 'r'))
