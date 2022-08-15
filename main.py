@@ -64,7 +64,7 @@ def start(message):
         markup = telebot.types.InlineKeyboardMarkup()
         markup.add(telebot.types.InlineKeyboardButton(
            text='✅ Verifier', callback_data='check'))
-        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - "
+        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 -\n si vous avez rejoint le canal cliquez sur ✅ Verifier "
         for i in CHANNELS:
             msg_start += f"\n➡️ {i}\n"
         msg_start += "*"
@@ -154,7 +154,7 @@ def query_handler(call):
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
                 text='🤼‍♂️ rejoint', callback_data='check'))
-            msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @filmserieshoww*"
+            msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @filmserieshoww \n si vous avez rejoint le canal cliquez sur ✅ Verifier*"
             bot.send_message(call.message.chat.id, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
    except:
@@ -206,7 +206,7 @@ def send_text(message):
 
         keyboard = telebot.types.ReplyKeyboardMarkup(True)
         keyboard.row('🚫 Annuler')
-        send = bot.send_message(message.chat.id, "_⚠️Envoyez votre adresse de portefeuille MTN a 12 caractères Exemple:237670086719._",
+        send = bot.send_message(message.chat.id, "_⚠️Envoyez votre adresse de portefeuille MTN a 12 caractères Exemple:+237670086719._",
                                 parse_mode="Markdown", reply_markup=keyboard)
         # Next message will call the name_handler function
         bot.register_next_step_handler(message, trx_address)
@@ -270,7 +270,7 @@ def trx_address(message):
    try:
     if message.text == "🚫 Annuler":
         return menu(message.chat.id)
-    if len(message.text) == 13 or 12:
+    if len(message.text) == 14 or 13:
         user_id = message.chat.id
         user = str(user_id)
         data = json.load(open('users.json', 'r'))
