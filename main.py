@@ -149,7 +149,7 @@ def query_handler(call):
 
         else:
             bot.answer_callback_query(
-                callback_query_id=call.id, text='❌ Vous navez pas rejoint tous les canaux')
+                callback_query_id=call.id, text='❌ Vous navez pas rejoint tous les canaux' bot.send_message(call.message.chat.id,' Vous navez pas rejoint tous les canaux'))
             bot.delete_message(call.message.chat.id, call.message.message_id)
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
