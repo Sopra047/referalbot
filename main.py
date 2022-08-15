@@ -31,7 +31,7 @@ def menu(id):
     keyboard.row('🆔 Compte')
     keyboard.row('🙌🏻 Parrainages', '🎁 Bonus', '💸 Solde')
     keyboard.row('⚙️ Définir le portefeuille', '📊Statistiques')
-    bot.send_message(id, "*🏡 Home*", parse_mode="Markdown",
+    bot.send_message(id, "*🏡 Bienvenue dans le Bot ,vous avez bien rejoint les canaux *", parse_mode="Markdown",
                      reply_markup=keyboard)
 
 @bot.message_handler(commands=['start'])
