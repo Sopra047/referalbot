@@ -8,7 +8,7 @@ TOKEN = "FCFA"
 BOT_TOKEN = "5555491322:AAGlbXGRTo-nGDKAXBlyPy-ixzKepLboDUM"
 PAYMENT_CHANNEL = "@MTNreferral" #add payment channel here including the '@' sign
 OWNER_ID = 5270469995 #write owner's user id here.. get it from @MissRose_Bot by /id
-CHANNELS = ["@MTNreferral" , "@SharClub8"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
+CHANNELS = ["@MTNreferral"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
               #you can add as many channels here and also add the '@' sign before channel username
 Daily_bonus = 250 #Put daily bonus amount here!
 Mini_Withdraw = 20000  #remove 0 and add the minimum withdraw u want to set
@@ -98,10 +98,10 @@ def start(message):
         markups = telebot.types.InlineKeyboardMarkup()
         markups.add(telebot.types.InlineKeyboardButton(
             text='✅ Verifier', callback_data='check'))
-        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral \n➡️ @SharClub8*"
+        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral*"
         bot.send_message(user, msg_start,
                          parse_mode="Markdown", reply_markup=markups)
-     except:
+    except:
               bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
               bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement!\n Error on command: "+message.text)
               return
@@ -154,7 +154,7 @@ def query_handler(call):
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
                 text='✅ Verifier', callback_data='check'))
-            msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral \n➡️ @SharClub8*"
+            msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral*"
             bot.send_message(call.message.chat.id, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
  except:
