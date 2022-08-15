@@ -101,9 +101,6 @@ def start(message):
         msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral*"
         bot.send_message(user, msg_start,
                          parse_mode="Markdown", reply_markup=markups)
-   except:
-        bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
-        bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement!\n Error on command: "+message.text)
         return
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -157,9 +154,6 @@ def query_handler(call):
             msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral*"
             bot.send_message(call.message.chat.id, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
-   except:
-        bot.send_message(call.message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
-        bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement !\n Erreur lors de la commande: "+call.data)
 
         return
 
