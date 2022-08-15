@@ -98,7 +98,7 @@ def start(message):
         markups = telebot.types.InlineKeyboardMarkup()
         markups.add(telebot.types.InlineKeyboardButton(
             text='✅ Verifier', callback_data='check'))
-        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @filmserieshoww*"
+        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @filmserieshoww \n si vous avez rejoint le canal cliquez sur ✅ Verifier*"
         bot.send_message(user, msg_start,
                          parse_mode="Markdown", reply_markup=markups)
    except:
@@ -259,7 +259,7 @@ def send_text(message):
             bot.register_next_step_handler(message, amo_with)
         else:
             bot.send_message(
-                user_id, f"_❌Votre solde bas, vous devriez avoir au moins {Mini_Withdraw} {TOKEN} to Solde_", parse_mode="Markdown")
+                user_id, f"_❌Votre solde bas, vous devriez avoir au moins {Mini_Withdraw} {TOKEN} dans votre Solde_", parse_mode="Markdown")
             return
    except:
         bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
@@ -270,7 +270,7 @@ def trx_address(message):
    try:
     if message.text == "🚫 Annuler":
         return menu(message.chat.id)
-    if len(message.text) == 12:
+    if len(message.text) == 13 or 12:
         user_id = message.chat.id
         user = str(user_id)
         data = json.load(open('users.json', 'r'))
