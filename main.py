@@ -206,7 +206,7 @@ def send_text(message):
 
         keyboard = telebot.types.ReplyKeyboardMarkup(True)
         keyboard.row('🚫 Annuler')
-        send = bot.send_message(message.chat.id, "_⚠️Envoyez votre adresse de Compte MTN valide Exemple: (+237xxxxxxxxx)._",
+        send = bot.send_message(message.chat.id, "_⚠️Envoyez votre numéro  MTN dans le format international  Exemple: au cameroun (+237xxxxxxxxx)._",
                                 parse_mode="Markdown", reply_markup=keyboard)
         # Next message will call the name_handler function
         bot.register_next_step_handler(message, trx_address)
