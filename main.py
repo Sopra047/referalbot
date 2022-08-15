@@ -10,7 +10,7 @@ PAYMENT_CHANNEL = "@MTNreferral" #add payment channel here including the '@' sig
 OWNER_ID = 5270469995 #write owner's user id here.. get it from @MissRose_Bot by /id
 CHANNELS = ["@MTNreferral"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
               #you can add as many channels here and also add the '@' sign before channel username
-Daily_bonus =  250 #Put daily bonus amount here!
+Daily_bonus = 250 #Put daily bonus amount here!
 Mini_Withdraw = 20000  #remove 0 and add the minimum withdraw u want to set
 Per_Refer = 1000 #add per refer bonus here
 
@@ -31,7 +31,7 @@ def menu(id):
     keyboard.row('🆔 Compte')
     keyboard.row('🙌🏻 Parrainages', '🎁 Bonus', '💸 Solde')
     keyboard.row('⚙️ Définir le portefeuille', '📊Statistiques')
-    bot.send_message(id, "*✅Vous avez bien rejoint les canaux*", parse_mode="Markdown",
+    bot.send_message(id, "*✅Vous avez bien rejoint les canaux *", parse_mode="Markdown",
                      reply_markup=keyboard)
 
 @bot.message_handler(commands=['start'])
@@ -64,7 +64,7 @@ def start(message):
         markup = telebot.types.InlineKeyboardMarkup()
         markup.add(telebot.types.InlineKeyboardButton(
            text='✅ Verifier', callback_data='check'))
-        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - "
+        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉-"
         for i in CHANNELS:
             msg_start += f"\n➡️ {i}\n"
         msg_start += "*"
@@ -101,10 +101,11 @@ def start(message):
         msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral*"
         bot.send_message(user, msg_start,
                          parse_mode="Markdown", reply_markup=markups)
+
    except:
-        bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
-        bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement!\n Error on command: "+message.text)
-        return
+       bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
+       bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement!\n Error on command: "+message.text)
+       return
 
 @bot.callback_query_handler(func=lambda call: True)
 def query_handler(call):
@@ -116,7 +117,7 @@ def query_handler(call):
             user_id = call.message.chat.id
             user = str(user_id)
             bot.answer_callback_query(
-                callback_query_id=call.id, text=' ✅ Vous avez rejoint Maintenant, vous pouvez gagner de largent et partage le lien de parrainage pour gagner encore plus')
+                callback_query_id=call.id, text='✅ Vous avez rejoint Maintenant, vous pouvez gagner de largent et partage le lien de parrainage pour gagner encore plus')
             bot.delete_message(call.message.chat.id, call.message.message_id)
             if user not in data['refer']:
                 data['refer'][user] = True
@@ -135,7 +136,7 @@ def query_handler(call):
                     data['balance'][ref] += Per_Refer
                     data['referred'][ref] += 1
                     bot.send_message(
-                        ref_id, f"*🏧Nouvelle recommandation au niveau 1, vous avez : +{Per_Refer} {TOKEN}*", parse_mode="Markdown")
+                        ref_id, f"*🏧 Nouvelle recommandation au niveau 1, vous avez : +{Per_Refer} {TOKEN}*", parse_mode="Markdown")
                     json.dump(data, open('users.json', 'w'))
                     return menu(call.message.chat.id)
 
@@ -158,9 +159,9 @@ def query_handler(call):
             bot.send_message(call.message.chat.id, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
    except:
-        bot.send_message(call.message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
-        bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement!\n Error on command: "+call.data)
-        return
+      bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
+      bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement!\n Error on command: "+message.text)
+      return
 
 @bot.message_handler(content_types=['text'])
 def send_text(message):
@@ -185,7 +186,7 @@ def send_text(message):
         bot.send_message(message.chat.id, msg, parse_mode="Markdown")
     if message.text == '🙌🏻 Parrainages':
         data = json.load(open('users.json', 'r'))
-        ref_msg = "*⏯️ Total Invites : {} Utilisateurs\n\n👥 Système de parrainage\n\n1 Level:\n🥇 Level°1 - {} {}\n\n🔗 Lien de référence Partagez pour recevoir rapidement de gain⬇️\n{}*"
+        ref_msg = "*⏯️ Total Invites : {} Utilisateurs\n\n👥Système de parrainage\n\n1 Level:\n🥇 Level°1 - {} {}\n\n🔗 Lien de référence Partagez pour recevoir rapidement de gain⬇️\n{}*"
 
         bot_name = bot.get_me().username
         user_id = message.chat.id
@@ -200,7 +201,7 @@ def send_text(message):
             bot_name, message.chat.id)
         msg = ref_msg.format(ref_count, Per_Refer, TOKEN, ref_link)
         bot.send_message(message.chat.id, msg, parse_mode="Markdown")
-    if message.text == "⚙️Définir le portefeuille":
+    if message.text == "⚙️ Définir le portefeuille":
         user_id = message.chat.id
         user = str(user_id)
 
@@ -224,7 +225,7 @@ def send_text(message):
             json.dump(data, open('users.json', 'w'))
         else:
             bot.send_message(
-                message.chat.id, "❌*Vous ne pouvez prendre le bonus qu'une fois toutes les 24 heures!*",parse_mode="markdown")
+                message.chat.id, "❌*Vous ne pouvez prendre le bonus qu'une fois toutes les 24 heures !*",parse_mode="markdown")
         return
 
     if message.text == "📊Statistiques":
@@ -263,14 +264,14 @@ def send_text(message):
             return
    except:
         bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
-        bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement !\n Erreur lors de la commande "+message.text)
+        bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement !\n Erreur lors de la commande: "+message.text)
         return
 
 def trx_address(message):
    try:
     if message.text == "🚫 Annuler":
         return menu(message.chat.id)
-    if len(message.text) == 13 or 14:
+    if len(message.text) == 14 or 13:
         user_id = message.chat.id
         user = str(user_id)
         data = json.load(open('users.json', 'r'))
@@ -306,7 +307,7 @@ def amo_with(message):
     msg = message.text
     if msg.isdigit() == False:
         bot.send_message(
-            user_id, "_📛 Valeur invalide. Saisir uniquement une valeur numérique. Essaye encore_", parse_mode="Markdown")
+            user_id, "_📛 Valeur invalide. Saisir uniquement une valeur numérique. Try again_", parse_mode="Markdown")
         return
     if int(message.text) < Mini_Withdraw:
         bot.send_message(
@@ -324,7 +325,7 @@ def amo_with(message):
     bot.send_message(user_id, "✅* Le retrait est demandé automatiquement à notre propriétaire\n\n💹 Payment Channel :- "+PAYMENT_CHANNEL +"*", parse_mode="Markdown")
 
     markupp = telebot.types.InlineKeyboardMarkup()
-    markupp.add(telebot.types.InlineKeyboardButton(text='🍀 BOT LINK', url=f'https://telegram.me/{bot_name}?start={OWNER_ID}'))
+    markupp.add(telebot.types.InlineKeyboardButton(text='🍀 LIEN BOT', url=f'https://telegram.me/{bot_name}?start={OWNER_ID}'))
 
     send = bot.send_message(PAYMENT_CHANNEL,  "✅* Nouveau Retrait\n\n⭐ Amount - "+str(amo)+f" {TOKEN}\n🦁 User - @"+message.from_user.username+"\n💠 Wallet* - `"+data['wallet'][user]+"`\n☎️ *Références d'utilisateurs = "+str(
         data['referred'][user])+"\n\n🏖 Lien bot - @"+bot_name+"\n⏩ Veuillez patienter, notre propriétaire le confirmera*", parse_mode="Markdown", disable_web_page_preview=True, reply_markup=markupp)
