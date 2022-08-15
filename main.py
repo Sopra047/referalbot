@@ -98,10 +98,13 @@ def start(message):
         markups = telebot.types.InlineKeyboardMarkup()
         markups.add(telebot.types.InlineKeyboardButton(
             text='✅ Verifier', callback_data='check'))
-        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral*"
+        msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral \n➡️ @SharClub8*"
         bot.send_message(user, msg_start,
                          parse_mode="Markdown", reply_markup=markups)
-        return
+     except:
+              bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
+              bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement!\n Error on command: "+message.text)
+              return
 
 @bot.callback_query_handler(func=lambda call: True)
 def query_handler(call):
@@ -151,10 +154,12 @@ def query_handler(call):
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
                 text='✅ Verifier', callback_data='check'))
-            msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral*"
+            msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral \n➡️ @SharClub8*"
             bot.send_message(call.message.chat.id, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
-
+ except:
+        bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
+        bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement!\n Error on command: "+message.text)
         return
 
 @bot.message_handler(content_types=['text'])
