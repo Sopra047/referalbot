@@ -101,7 +101,7 @@ def start(message):
         msg_start = "*🍔 Pour utiliser ce bot, vous devez rejoindre cette chaîne en cliquant sur ce lien 👉 - \n➡️ @MTNreferral*"
         bot.send_message(user, msg_start,
                          parse_mode="Markdown", reply_markup=markups)
-    except:
+  except:
               bot.send_message(message.chat.id, "Cette commande ayant une erreur, veuillez attendre que le problème soit corrigé par l'administrateur")
               bot.send_message(OWNER_ID, "Votre bot a rencontré une erreur, corrigez-la rapidement!\n Error on command: "+message.text)
               return
